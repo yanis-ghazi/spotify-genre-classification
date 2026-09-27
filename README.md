@@ -1,47 +1,47 @@
 # Spotify Audio Analysis
 
-Projet académique portant sur l'analyse et la classification de morceaux musicaux à partir de leurs caractéristiques audio issues de Spotify. Il couvre deux axes principaux : la classification de genres et la prédiction de popularité, ainsi qu'un système d'identification audio par empreinte numérique.
+Academic project on the analysis and classification of music tracks from their Spotify audio features. It covers two main areas: genre classification and popularity prediction, plus an audio identification system based on digital fingerprinting.
 
 ---
 
-## Partie 1 — Machine Learning sur features audio
+## Part 1: Machine learning on audio features
 
-### Exercice 1 : Classification du genre musical
+### Exercise 1: Music genre classification
 
-Prédiction du genre d'un morceau (pop, rock, country…) à partir de ses features audio numériques (danceability, energy, tempo, loudness, etc.).
+Predicting a track's genre (pop, rock, country...) from its numeric audio features (danceability, energy, tempo, loudness, etc.).
 
-Cinq modèles comparés via F1-score micro :
+Five models compared via micro F1-score:
 
-| Modèle | Remarque |
+| Model | Note |
 |---|---|
-| K-Nearest Neighbors | Baseline simple |
-| Logistic Regression | Modèle linéaire multiclasse |
-| SVM (kernel RBF) | Bon sur espaces de grande dimension |
-| Random Forest | **Meilleur F1-score → modèle retenu** |
-| XGBoost | Gradient boosting avec encodage des labels |
+| K-Nearest Neighbors | Simple baseline |
+| Logistic Regression | Multiclass linear model |
+| SVM (RBF kernel) | Strong on high-dimensional spaces |
+| Random Forest | **Best F1-score, selected model** |
+| XGBoost | Gradient boosting with label encoding |
 
-### Exercice 2 : Prédiction de la popularité
+### Exercise 2: Popularity prediction
 
-Problème de régression sur la variable `popularity` (0–100). Modèles testés : régression linéaire et Random Forest Regressor, évalués par MSE et R².
-
----
-
-## Partie 2 — Système d'identification audio (Shazam-like)
-
-Implémentation d'un moteur de reconnaissance musicale basé sur le fingerprinting audio.
-
-**Pipeline :**
-1. Calcul du spectrogramme via STFT (librosa, sr=3000 Hz)
-2. Extraction des maxima locaux (points d'intérêt)
-3. Génération de hashes par paires ancre / target zone
-4. Construction d'une base de données de signatures
-5. Identification d'un extrait de 10 secondes par corrélation temporelle des hashes
+Regression problem on the `popularity` variable (0 to 100). Models tested: linear regression and Random Forest Regressor, evaluated with MSE and R².
 
 ---
 
-## Partie 3 — Prédiction conforme (Conformal Prediction)
+## Part 2: Audio identification system (Shazam-like)
 
-Quantification de l'incertitude du classifieur KNN via la prédiction conforme. Génération d'intervalles de confiance garantissant que le vrai genre appartient à l'ensemble prédit avec une probabilité fixée (ex : 95 %).
+Implementation of a music recognition engine based on audio fingerprinting.
+
+**Pipeline:**
+1. Spectrogram computation via STFT (librosa, sr=3000 Hz)
+2. Local maxima extraction (points of interest)
+3. Hash generation from anchor / target zone pairs
+4. Building a signature database
+5. Identifying a 10-second excerpt through temporal correlation of hashes
+
+---
+
+## Part 3: Conformal prediction
+
+Quantifying the uncertainty of the KNN classifier through conformal prediction. Generating confidence sets that guarantee the true genre belongs to the predicted set with a fixed probability (e.g. 95%).
 
 ---
 
@@ -54,6 +54,6 @@ Python · scikit-learn · XGBoost · librosa · pandas · matplotlib · seaborn 
 ## Structure
 
 ```
-├── GHAZI__TAREK.ipynb   # Notebook principal (toutes les parties)
-└── GHAZI_TAREK.csv      # Prédictions finales (soumission exercice 1)
+├── GHAZI__TAREK.ipynb   # Main notebook (all parts)
+└── GHAZI_TAREK.csv      # Final predictions (exercise 1 submission)
 ```
